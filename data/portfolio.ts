@@ -6,7 +6,7 @@ export const profile = {
     "Specializing in building robust backend architectures (Spring Boot, Next.js server pipelines, microservices) and clean, high-performance responsive frontend interfaces and native iOS apps.",
   stats: [
     { label: "Years Exp", value: "2+", colorClass: "text-emerald-400" },
-    { label: "Projects Built", value: "12+", colorClass: "text-cyan-400" },
+    { label: "Projects Built", value: "2+", colorClass: "text-cyan-400" },
     { label: "Languages", value: "4", colorClass: "text-violet-300" },
   ],
   coreStackLabel: "Core Stack",
