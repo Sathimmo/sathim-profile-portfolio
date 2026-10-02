@@ -55,18 +55,18 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="relative mx-auto w-full max-w-sm">
-          <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl border border-border-subtle bg-surface">
+        <div className="mx-auto flex w-full max-w-xs flex-col items-center gap-5">
+          <div className="relative aspect-square w-56 overflow-hidden rounded-full border-4 border-border-subtle bg-surface shadow-xl sm:w-64 md:w-72">
             <Image
               src={profile.avatarSrc}
               alt={profile.name}
               fill
-              sizes="(min-width: 768px) 384px, 90vw"
+              sizes="(min-width: 768px) 288px, 256px"
               className="object-cover"
               priority
             />
           </div>
-          <div className="absolute -bottom-5 left-1/2 flex w-[88%] -translate-x-1/2 items-center gap-2 rounded-xl border border-border-subtle bg-surface/95 px-4 py-3 shadow-xl backdrop-blur">
+          <div className="flex items-center gap-2 rounded-xl border border-border-subtle bg-surface/95 px-4 py-3 shadow-xl backdrop-blur">
             <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-accent/15 text-accent">
               <Zap className="h-4 w-4" />
             </span>
