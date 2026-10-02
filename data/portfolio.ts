@@ -24,7 +24,7 @@ export type Project = {
   role: { heading: string; text: string }[];
   highlightTags: string[];
   mutedTags: string[];
-  actions: { label: string; variant: "primary" | "outline" | "ghost" }[];
+  actions: { label: string; variant: "primary" | "outline" | "ghost"; href: string }[];
 };
 
 export const projects: Project[] = [
@@ -49,9 +49,9 @@ export const projects: Project[] = [
     highlightTags: ["Spring Boot (Microservices)", "Next.js (Frontend)", "Swift (iOS)"],
     mutedTags: ["Kotlin (AOS - Team)", "Python / RAG", "Vector DB", "REST / WebSocket"],
     actions: [
-      { label: "View Architecture", variant: "primary" },
-      { label: "Team Workspace", variant: "outline" },
-      { label: "Repo", variant: "ghost" },
+      { label: "View Architecture", variant: "primary", href: "#" },
+      { label: "Team Workspace", variant: "outline", href: "#" },
+      { label: "Repo", variant: "ghost", href: "#" },
     ],
   },
   {
@@ -71,8 +71,12 @@ export const projects: Project[] = [
     highlightTags: ["Next.js", "Spring Boot", "PostgreSQL", "Docker", "Redis"],
     mutedTags: [],
     actions: [
-      { label: "Live Demo", variant: "primary" },
-      { label: "Source Repo", variant: "outline" },
+      { label: "Live Demo", variant: "primary", href: "#" },
+      {
+        label: "Source Repo",
+        variant: "outline",
+        href: "https://github.com/14th-Gen-Basic-Course-Final-Project/HRD-EventHub-UI",
+      },
     ],
   },
 ];

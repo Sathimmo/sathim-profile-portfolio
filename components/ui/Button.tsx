@@ -25,9 +25,13 @@ export default function Button({
   iconPosition = "right",
   className = "",
 }: ButtonProps) {
+  const isExternal = /^https?:\/\//.test(href);
+
   return (
     <a
       href={href}
+      target={isExternal ? "_blank" : undefined}
+      rel={isExternal ? "noopener noreferrer" : undefined}
       className={`inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm transition-colors ${variants[variant]} ${className}`}
     >
       {Icon && iconPosition === "left" && <Icon className="h-4 w-4" />}

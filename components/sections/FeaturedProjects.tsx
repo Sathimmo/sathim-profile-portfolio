@@ -91,6 +91,7 @@ export default function FeaturedProjects() {
                 action.variant === "ghost" ? (
                   <Button
                     key={action.label}
+                    href={action.href}
                     variant="ghost"
                     icon={Folder}
                     iconPosition="left"
@@ -101,6 +102,7 @@ export default function FeaturedProjects() {
                 ) : (
                   <Button
                     key={action.label}
+                    href={action.href}
                     variant={action.variant}
                     icon={action.variant === "primary" ? ArrowUpRight : Users}
                     iconPosition={action.variant === "primary" ? "right" : "left"}
