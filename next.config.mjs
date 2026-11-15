@@ -1,6 +1,17 @@
 const isDev = process.env.NODE_ENV === "development";
 
 /**
+ * Where the RAGStudio chat widget is served from.
+ *
+ * The embed snippet loads <origin>/widget.js, and that script opens
+ * <origin>/w/<widgetKey> in an iframe, so this origin has to be allowed in
+ * both script-src and frame-src below. Set NEXT_PUBLIC_RAGSTUDIO_ORIGIN in
+ * Vercel to the deployed RAGStudio URL; the default is the local dev server.
+ */
+const ragstudio =
+  process.env.NEXT_PUBLIC_RAGSTUDIO_ORIGIN || "http://localhost:3000";
+
+/**
  * Content Security Policy.
  *
  * This site is statically prerendered, so there is no request-time hook in
@@ -16,7 +27,7 @@ const isDev = process.env.NODE_ENV === "development";
 const csp = [
   "default-src 'self'",
   // 'unsafe-eval' is required by React Refresh in dev only.
-  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""}`,
+  `script-src 'self' 'unsafe-inline' ${ragstudio}${isDev ? " 'unsafe-eval'" : ""}`,
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob:",
   // next/font self-hosts Google Fonts at build time — no external font origin.
@@ -26,7 +37,8 @@ const csp = [
   "base-uri 'self'",
   "form-action 'self'",
   "frame-ancestors 'none'",
-  "frame-src 'none'",
+  // The chat panel is an iframe on the RAGStudio origin. Nothing else may be framed.
+  `frame-src ${ragstudio}`,
   "manifest-src 'self'",
   "worker-src 'self' blob:",
   ...(isDev ? [] : ["upgrade-insecure-requests"]),

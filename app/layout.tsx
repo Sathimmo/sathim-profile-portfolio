@@ -35,7 +35,8 @@ export default function RootLayout({
         <ScrollProgress />
         <Navbar />
         {children}
-        <script src="http://localhost:3000/widget.js" data-ragstudio-token="f_Scf86BO5ziH1Wuy6QD98fU3Nsm2jrLqwBWqW2aucQ" async></script></body>
+        <script src="http://localhost:3000/widget.js" data-ragstudio-token="f_Scf86BO5ziH1Wuy6QD98fU3Nsm2jrLqwBWqW2aucQ" async></script>
+      </body>
     </html>
   );
 }
