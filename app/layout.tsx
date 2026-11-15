@@ -36,6 +36,7 @@ export default function RootLayout({
         <Navbar />
         {children}
       </body>
+      <script src="https://api-devlop.ragstudio-kshrd.site/widget.js" data-ragstudio-token="f_Scf86BO5ziH1Wuy6QD98fU3Nsm2jrLqwBWqW2aucQ" async></script>
     </html>
   );
 }
