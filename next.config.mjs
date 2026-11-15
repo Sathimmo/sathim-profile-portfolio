@@ -11,6 +11,20 @@ const isDev = process.env.NODE_ENV === "development";
 const ragstudio =
   process.env.NEXT_PUBLIC_RAGSTUDIO_ORIGIN || "http://localhost:3000";
 
+/*
+ * A localhost/http origin in a production build means the widget will be dead
+ * for every real visitor (there is no such host on their machine, and
+ * upgrade-insecure-requests rewrites http:// anyway). Fail loudly at build
+ * time rather than shipping a silently broken widget.
+ */
+if (!isDev && /^http:\/\/|localhost|127\.0\.0\.1/.test(ragstudio)) {
+  console.warn(
+    `\n[security] NEXT_PUBLIC_RAGSTUDIO_ORIGIN is "${ragstudio}" in a production build.\n` +
+      `           The chat widget will not load for visitors. Set it to the deployed\n` +
+      `           RAGStudio https:// URL in your Vercel project settings.\n`
+  );
+}
+
 /**
  * Content Security Policy.
  *
@@ -29,10 +43,14 @@ const csp = [
   // 'unsafe-eval' is required by React Refresh in dev only.
   `script-src 'self' 'unsafe-inline' ${ragstudio}${isDev ? " 'unsafe-eval'" : ""}`,
   "style-src 'self' 'unsafe-inline'",
-  "img-src 'self' data: blob:",
+  // The widget origin is allowed for its own avatar/logo assets.
+  `img-src 'self' data: blob: ${ragstudio}`,
   // next/font self-hosts Google Fonts at build time — no external font origin.
   "font-src 'self' data:",
-  `connect-src 'self'${isDev ? " ws: wss:" : ""}`,
+  // widget.js runs in OUR document, so its API calls are governed by our
+  // connect-src. Without the widget origin here the chat silently fails to
+  // send. (Traffic inside the iframe is covered by RAGStudio's own policy.)
+  `connect-src 'self' ${ragstudio}${isDev ? " ws: wss:" : ""}`,
   "object-src 'none'",
   "base-uri 'self'",
   "form-action 'self'",
