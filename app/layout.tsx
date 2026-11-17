@@ -61,7 +61,7 @@ export default function RootLayout({
           data-ragstudio-token={ragstudioToken}
           strategy="lazyOnload"
         /> */}
-        <script src="http://localhost:3000/widget.js" data-ragstudio-token="f_Scf86BO5ziH1Wuy6QD98fU3Nsm2jrLqwBWqW2aucQ" async></script>
+        <script src="http://localhost:3000/widget.js" data-ragstudio-token="NQ1wS2VPcitdqILM1nCGusWfXy-b59GGaNPg4Qeh4gY" async></script>
       </body>
     </html>
   );
