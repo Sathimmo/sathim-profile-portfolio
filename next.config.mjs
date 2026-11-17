@@ -79,7 +79,11 @@ const securityHeaders = [
       "geolocation=()",
       "gyroscope=()",
       "magnetometer=()",
-      "microphone=()",
+      // The chat widget offers voice input, which a cross-origin frame only
+      // gets when this page grants it. The grant names the RAGStudio origin
+      // and nothing else, so this page itself still cannot use the
+      // microphone, and no other frame can either.
+      `microphone=("${ragstudio}")`,
       "payment=()",
       "usb=()",
       "interest-cohort=()",
