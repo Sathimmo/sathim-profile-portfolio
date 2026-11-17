@@ -56,11 +56,12 @@ export default function RootLayout({
         {children}
         {/* lazyOnload: the widget is non-critical, so it loads during idle
             time instead of competing with the hero image and fonts. */}
-        <Script
+        {/* <Script
           src={`${ragstudioOrigin}/widget.js`}
           data-ragstudio-token={ragstudioToken}
           strategy="lazyOnload"
-        />
+        /> */}
+        <script src="http://localhost:3000/widget.js" data-ragstudio-token="f_Scf86BO5ziH1Wuy6QD98fU3Nsm2jrLqwBWqW2aucQ" async></script>
       </body>
     </html>
   );
